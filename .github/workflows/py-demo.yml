@@ -1,0 +1,51 @@
+name: Python PyO3 Demo CI
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+
+jobs:
+  build-and-test:
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [ubuntu-latest, windows-latest, macos-latest]
+        python-version: [3.11]
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Install Rust
+        uses: actions-rs/toolchain@v1
+        with:
+          toolchain: stable
+          override: true
+
+      - name: Setup Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: ${{ matrix.python-version }}
+
+      - name: Install maturin
+        run: |
+          python -m pip install --upgrade pip
+          pip install maturin
+
+      - name: Build Rust PyO3 module
+        working-directory: ./py-bridge
+        run: |
+          maturin develop --release
+
+      - name: Install Python dependencies
+        working-directory: ./py-demo
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt || echo "No requirements.txt"
+
+      - name: Run py-demo tests
+        working-directory: ./py-demo
+        run: |
+          python -m unittest discover -s tests -p "*.py"
