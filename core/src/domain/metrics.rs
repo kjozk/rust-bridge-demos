@@ -1,4 +1,5 @@
 //! Shape-related calculations.
+use serde::{Serialize, Deserialize};
 
 #[derive(Debug, Clone, PartialEq)]
 pub struct Area {
@@ -25,6 +26,11 @@ fn area_circle(circle: &Circle) -> f64 {
 
 fn area_rectangle(rect: &Rectangle) -> f64 {
     rect.width * rect.height
+}
+
+#[derive(Debug, Serialize, Deserialize)]
+pub struct MetricResult {
+    pub result: f64,
 }
 
 #[cfg(test)]

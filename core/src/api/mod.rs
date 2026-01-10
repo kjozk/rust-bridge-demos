@@ -6,6 +6,7 @@
 // MessagePack / PyO3 向けの IF が入る
 pub mod shape;
 pub mod result;
+pub mod evaluate;
 
 use crate::domain::{
     metrics::Area,

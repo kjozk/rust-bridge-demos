@@ -35,7 +35,7 @@ rust-bridge-demos/
 ├─ core/ # Rust コアライブラリ（domain + APIモデル）
 ├─ py-bridge/ # Rust → PyO3 ブリッジ
 ├─ py-demo/ # Python デモアプリケーション
-├─ msgpack-bridge/ # Rust → MessagePack（C ABI）
+├─ messagepack-bridge/ # Rust → MessagePack（C ABI）
 ├─ dotnet-bridge/ # C# ラッパー（P/Invoke）
 ├─ dotnet-demo/ # WPF デモアプリケーション
 └─ docs/ # 設計メモ・補足資料

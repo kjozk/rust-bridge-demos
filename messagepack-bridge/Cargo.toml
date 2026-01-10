@@ -1,11 +1,14 @@
 [package]
-name = "rust_bridge_core"
+name = "messagepack-bridge"
 version = "0.1.0"
 edition = "2024"
 
 [lib]
-crate-type = ["rlib"]
+crate-type = ["cdylib"]
 
 [dependencies]
+rust_bridge_core = { path = "../core" }
+
 serde = { version = "1.0", features = ["derive"] }
 rmp-serde = "1.1"
+libc = "0.2"
