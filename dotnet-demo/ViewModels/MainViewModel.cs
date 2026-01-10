@@ -1,6 +1,7 @@
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using DotnetBridge;
+using DotnetBridge.MessagePacks;
 
 namespace DotnetDemo.ViewModels;
 

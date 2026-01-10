@@ -1,5 +1,7 @@
 namespace DotnetBridge;
+using DotnetBridge.MessagePacks;
 using MessagePack;
+using System;
 using System.Runtime.InteropServices;
 
 public static class ShapeApi
@@ -24,7 +26,12 @@ public static class ShapeApi
 
             var result = MessagePackSerializer.Deserialize<AreaResultDto>(output);
             return result.Area;
-        }        finally
+        }
+        catch(MessagePackSerializationException ex)
+        {
+            throw new InvalidOperationException("Failed to deserialize native response", ex);
+        }
+        finally
         {
             NativeMethods.FreeBuffer(outputPtr, outputLen);
         }

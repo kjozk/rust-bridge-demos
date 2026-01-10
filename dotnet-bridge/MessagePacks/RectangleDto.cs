@@ -1,6 +1,5 @@
 using MessagePack;
-
-namespace DotnetBridge;
+namespace DotnetBridge.MessagePacks;
 
 [MessagePackObject]
 public sealed class RectangleDto

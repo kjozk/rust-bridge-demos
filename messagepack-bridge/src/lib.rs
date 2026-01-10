@@ -38,7 +38,7 @@ pub extern "C" fn calc_area_msgpack_ffi(
 
     let result: AreaResult = evaluate::calc_area(rect);
 
-    let output = match to_vec(&result) {
+    let output = match rmp_serde::to_vec(&result) {
         Ok(v) => v,
         Err(_) => return -3,
     };

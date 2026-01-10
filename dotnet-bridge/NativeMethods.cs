@@ -5,7 +5,7 @@ namespace DotnetBridge;
 internal static class NativeMethods
 {
     [DllImport(
-        "messagepack_bridge",
+        "native/messagepack_bridge",
         EntryPoint = "calc_area_msgpack_ffi",
         CallingConvention = CallingConvention.Cdecl)]
     internal static extern int CalcAreaMsgpackFfi(
@@ -15,7 +15,7 @@ internal static class NativeMethods
         out nuint outputLen);
 
     [DllImport(
-        "messagepack_bridge",
+        "native/messagepack_bridge",
         EntryPoint = "free_buffer",
         CallingConvention = CallingConvention.Cdecl)]
     internal static extern void FreeBuffer(

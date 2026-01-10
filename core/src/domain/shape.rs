@@ -19,6 +19,7 @@ pub struct Rectangle {
 }
 
 #[derive(Debug, Serialize, Deserialize, Clone, PartialEq)]
+#[serde(rename_all = "camelCase")] // map のキー名を "area" に
 pub struct AreaResult {
     pub area: f64,
 }
