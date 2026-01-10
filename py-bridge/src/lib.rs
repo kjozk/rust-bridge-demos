@@ -1,8 +1,8 @@
 use pyo3::prelude::*;
+use pyo3::wrap_pyfunction;
 use rust_bridge_core::domain::shape::{Rectangle, Shape};
 use rust_bridge_core::domain::metrics::area;
 
-/// Python側で使うRectangle構造体
 #[pyclass]
 #[derive(Clone)]
 pub struct PyRectangle {
@@ -12,15 +12,6 @@ pub struct PyRectangle {
     pub height: f64,
 }
 
-#[pymethods]
-impl PyRectangle {
-    #[new]
-    fn new(width: f64, height: f64) -> Self {
-        PyRectangle { width, height }
-    }
-}
-
-/// Pythonから呼ぶ関数
 #[pyfunction]
 fn calc_rectangle_area(rect: PyRef<PyRectangle>) -> PyResult<f64> {
     let r = Rectangle {
@@ -32,9 +23,9 @@ fn calc_rectangle_area(rect: PyRef<PyRectangle>) -> PyResult<f64> {
     Ok(result.value)
 }
 
-/// モジュール定義
 #[pymodule]
-fn py_bridge(_py: Python, m: &PyModule) -> PyResult<()> {
+fn py_bridge(py: Python, m: &PyModule) -> PyResult<()> {
+    // PyO3 0.20 以降は add_class と add_function を m.add_class::<T>() ではなく add_class 形式で呼ぶ
     m.add_class::<PyRectangle>()?;
     m.add_function(wrap_pyfunction!(calc_rectangle_area, m)?)?;
     Ok(())
