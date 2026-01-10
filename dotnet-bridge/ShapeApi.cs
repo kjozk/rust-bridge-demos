@@ -8,25 +8,25 @@ public static class ShapeApi
     {
         var input = MessagePackSerializer.Serialize(rect);
 
-        IntPtr ptr = NativeMethods.calc_rectangle_area_msgpack(
+        int rc = NativeMethods.CalcAreaMsgpackFfi(
             input,
-            input.Length,
-            out int outputLen);
+            (nuint)input.Length,
+            out IntPtr outputPtr,
+            out nuint outputLen);
 
-        if (ptr == IntPtr.Zero)
-            throw new InvalidOperationException("Native call failed");
+        if (rc != 0 || outputPtr == IntPtr.Zero)
+            throw new InvalidOperationException($"Native error rc={rc}");
 
         try
         {
-            var output = new byte[outputLen];
-            Marshal.Copy(ptr, output, 0, outputLen);
+            var output = new byte[(int)outputLen];
+            Marshal.Copy(outputPtr, output, 0, (int)outputLen);
 
             var result = MessagePackSerializer.Deserialize<AreaResultDto>(output);
             return result.Area;
-        }
-        finally
+        }        finally
         {
-            NativeMethods.free_buffer(ptr, (nuint)outputLen);
+            NativeMethods.FreeBuffer(outputPtr, outputLen);
         }
     }
 }
