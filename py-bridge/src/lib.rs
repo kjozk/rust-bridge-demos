@@ -1,6 +1,6 @@
 use pyo3::prelude::*;
 use pyo3::wrap_pyfunction;
-use rust_bridge_core::domain::shape::Rectangle;
+use rust_bridge_core::domain::shape::{Rectangle, Shape};
 use rust_bridge_core::domain::metrics::area;
 
 #[pyfunction]
@@ -8,7 +8,9 @@ fn calc_rectangle_area_py(_py: Python, rect: &PyAny) -> PyResult<f64> {
     let width: f64 = rect.get_item("width")?.extract()?;
     let height: f64 = rect.get_item("height")?.extract()?;
     let r = Rectangle { width, height };
-    Ok(area(&r))
+    let shape = Shape::Rectangle(r);
+    let result = area(&shape);
+    Ok(result.value)
 }
 
 #[pymodule]
