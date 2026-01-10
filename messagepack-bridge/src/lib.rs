@@ -3,7 +3,7 @@ use rust_bridge_core::domain::shape::{Rectangle, AreaResult};
 use std::slice;
 use std::ptr;
 
-use rmp_serde::{from_slice, to_vec};
+use rmp_serde::{from_slice};
 
 pub fn calc_area_msgpack(input: &[u8]) -> Result<Vec<u8>, Box<dyn std::error::Error>> {
     // 1. deserialize
@@ -13,7 +13,7 @@ pub fn calc_area_msgpack(input: &[u8]) -> Result<Vec<u8>, Box<dyn std::error::Er
     let result: AreaResult = evaluate::calc_area(rect);
 
     // 3. serialize
-    let output = to_vec(&result)?;
+    let output = rmp_serde::to_vec_named(&result)?;
 
     Ok(output)
 }
@@ -38,7 +38,7 @@ pub extern "C" fn calc_area_msgpack_ffi(
 
     let result: AreaResult = evaluate::calc_area(rect);
 
-    let output = match rmp_serde::to_vec(&result) {
+    let output = match rmp_serde::to_vec_named(&result) {
         Ok(v) => v,
         Err(_) => return -3,
     };
