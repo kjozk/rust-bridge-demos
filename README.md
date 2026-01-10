@@ -41,6 +41,27 @@ rust-bridge-demos/
 └─ docs/ # 設計メモ・補足資料
 ```
 
+```mermaid
+graph TD
+    Core[Rust core ライブラリ]
+
+    PyBridge[Rust → PyO3 ブリッジ]
+    PyDemo[Python デモアプリ]
+
+    MsgPackBridge[Rust → MessagePack ブリッジ]
+    DotnetBridge[C# ラッパー]
+    DotnetDemo[WPF デモアプリ]
+
+    %% Rust core からの依存
+    Core --> PyBridge
+    PyBridge --> PyDemo
+
+    Core --> MsgPackBridge
+    MsgPackBridge --> DotnetBridge
+    DotnetBridge --> DotnetDemo
+
+```
+
 ---
 
 ## Rust コア (`core/`)

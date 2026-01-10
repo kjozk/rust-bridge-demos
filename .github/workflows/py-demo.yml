@@ -33,10 +33,9 @@ jobs:
         working-directory: ./py-bridge
         run: |
           python -m venv .venv
-          source .venv/bin/activate
           python -m pip install --upgrade pip
-          pip install maturin
-          maturin develop --release
+          python -m pip install maturin
+          python -m maturin develop --release
 
       - name: Install Python dependencies
         working-directory: ./py-demo
