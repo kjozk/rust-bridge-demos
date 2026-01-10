@@ -1,5 +1,5 @@
 [package]
-name = "messagepack_bridge"
+name = "messagepack-bridge"
 version = "0.1.0"
 edition = "2024"
 
