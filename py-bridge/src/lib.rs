@@ -1,6 +1,6 @@
 use pyo3::prelude::*;
 use rust_bridge_core::domain::shape::Rectangle;
-use rust_bridge_core::domain::metrics::calc_area;
+use rust_bridge_core::domain::metrics::area_rectangle;
 
 // Python モジュールとして公開
 #[pymodule]
@@ -13,7 +13,7 @@ fn py_bridge(_py: Python, m: &PyModule) -> PyResult<()> {
         let height: f64 = rect.get_item("height")?.extract()?;
         let r = Rectangle { width, height };
 
-        let area = calc_area(&r);
+        let area = area_rectangle(&r);
         Ok(area)
     }
 
