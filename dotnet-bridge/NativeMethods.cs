@@ -1,18 +1,16 @@
 using System;
 using System.Runtime.InteropServices;
-namespace dotnet_bridge;
+namespace DotnetBridge;
 
 internal static class NativeMethods
 {
     private const string DllName = "messagepack_bridge";
 
-    [DllImport(DllName, CallingConvention = CallingConvention.Cdecl)]
-    internal static extern int calc_area_msgpack(
+    [DllImport("messagepack_bridge", CallingConvention = CallingConvention.Cdecl)]
+    internal static extern IntPtr calc_rectangle_area_msgpack(
         byte[] input,
-        UIntPtr input_len,
-        out IntPtr output_ptr,
-        out UIntPtr output_len
-    );
+        int inputLen,
+        out int outputLen);
 
     [DllImport(DllName, CallingConvention = CallingConvention.Cdecl)]
     internal static extern void free_buffer(IntPtr ptr, UIntPtr len);
