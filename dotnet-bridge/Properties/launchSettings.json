@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "dotnet-bridge": {
+      "commandName": "Project",
+      "nativeDebugging": true
+    }
+  }
+}

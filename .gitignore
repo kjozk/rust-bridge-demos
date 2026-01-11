@@ -84,6 +84,7 @@ packages/
 
 # Native build outputs
 *.dll
+*.pdb
 *.so
 *.dylib
 

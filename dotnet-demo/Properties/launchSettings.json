@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "dotnet-demo": {
+      "commandName": "Project",
+      "nativeDebugging": true
+    }
+  }
+}

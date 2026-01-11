@@ -14,6 +14,7 @@
     <Exec Condition="'$(Configuration)' == 'Debug'" Command="cargo build --manifest-path ..\messagepack-bridge\Cargo.toml" />
 
     <Copy Condition="'$(Configuration)' == 'Debug'" SourceFiles="..\messagepack-bridge\target\debug\messagepack_bridge.dll" DestinationFolder="$(OutDir)native" SkipUnchangedFiles="true" />
+    <Copy Condition="'$(Configuration)' == 'Debug'" SourceFiles="..\messagepack-bridge\target\debug\messagepack_bridge.pdb" DestinationFolder="$(OutDir)native" SkipUnchangedFiles="true" />
 
     <!-- Release -->
     <Exec Condition="'$(Configuration)' == 'Release'" Command="cargo build --manifest-path ..\messagepack-bridge\Cargo.toml --release" />
