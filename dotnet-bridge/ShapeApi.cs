@@ -10,7 +10,7 @@ public static class ShapeApi
     {
         var input = MessagePackSerializer.Serialize(rect);
 
-        int rc = NativeMethods.CalcAreaMsgpackFfi(
+        int rc = NativeMethods.CalcArea(
             input,
             (nuint)input.Length,
             out IntPtr outputPtr,

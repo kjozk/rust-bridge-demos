@@ -20,12 +20,6 @@
 - 異なるブリッジ方式を **並列に比較**する
 - 実務でそのまま応用可能な構成を提示する
 
-以下のような疑問に答えることを意図しています。
-
-- PyO3 と MessagePack + FFI は何が違うのか
-- IF 用モデルはどこで定義すべきか
-- 言語ごとにどこまで責務を分離すべきか
-
 ---
 
 ## 全体構成
@@ -35,8 +29,8 @@ rust-bridge-demos/
 ├─ core/ # Rust コアライブラリ（domain + APIモデル）
 ├─ py-bridge/ # Rust → PyO3 ブリッジ
 ├─ py-demo/ # Python デモアプリケーション
-├─ messagepack-bridge/ # Rust → MessagePack（C ABI）
-├─ dotnet-bridge/ # C# ラッパー（P/Invoke）
+├─ messagepack-bridge/ # core → MessagePack（C ABI）
+├─ dotnet-bridge/ # messagepack-bridge の C#向け ラッパー（P/Invoke）
 ├─ dotnet-demo/ # WPF デモアプリケーション
 └─ docs/ # 設計メモ・補足資料
 ```
@@ -48,7 +42,7 @@ graph TD
     PyBridge[Rust → PyO3 ブリッジ]
     PyDemo[Python デモアプリ]
 
-    MsgPackBridge[Rust → MessagePack ブリッジ]
+    MsgPackBridge[core → MessagePack ブリッジ]
     DotnetBridge[C# ラッパー]
     DotnetDemo[WPF デモアプリ]
 
@@ -90,11 +84,11 @@ Rust は「唯一の真実（Single Source of Truth）」として扱います�
 
 ## .NET 向けブリッジ（MessagePack + C ABI）
 
-### `msgpack-bridge/`
+### `messagepack-bridge/`
 
 - Rust の C ABI を公開
 - 入出力は **MessagePack バイナリ**
-- 言語非依存な IF を提供
+- 言語非依存な I/F を提供
 
 ### `dotnet-bridge/`
 
@@ -106,44 +100,3 @@ Rust は「唯一の真実（Single Source of Truth）」として扱います�
 
 - WPF を用いたデモアプリケーション
 - Rust エンジンの結果を視覚的に確認可能
-
----
-
-## なぜこの構成なのか
-
-### Rust を中心に据える理由
-
-- 高いパフォーマンス
-- 明確な所有権モデル
-- 安定した ABI 設計が可能
-
-### ブリッジ層を分ける理由
-
-- 各言語の責務を明確にする
-- IF モデルの変更影響を局所化する
-- 将来の拡張（macOS / Linux / Web 等）を容易にする
-
----
-
-## このリポジトリで扱わないこと
-
-- UI フレームワークの詳細な解説
-- ネットワーク通信（HTTP / gRPC）
-- 巨大なフレームワーク依存
-
-あくまで **「Rust ライブラリをどう再利用するか」** に焦点を当てています。
-
----
-
-## 想定読者
-
-- Rust をコアにしたライブラリ設計を考えている方
-- Python / C# から Rust を使いたい方
-- FFI やデータ境界設計に関心のある方
-
----
-
-## ライセンス
-
-このリポジトリはサンプル・デモ用途を想定しています。
-ライセンスについては `LICENSE` を参照してください。
