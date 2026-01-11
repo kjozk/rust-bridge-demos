@@ -24,9 +24,9 @@ fn calc_rectangle_area(rect: PyRef<PyRectangle>) -> PyResult<f64> {
 }
 
 #[pymodule]
-fn py_bridge(py: Python, m: &PyModule) -> PyResult<()> {
-    // PyO3 0.20 以降は add_class と add_function を m.add_class::<T>() ではなく add_class 形式で呼ぶ
+fn py_bridge<'py>(_py: Python<'py>, m: pyo3::Bound<'py, pyo3::types::PyModule>) -> PyResult<()> {
+    // PyO3 0.20 以降は標準の add_class / add_function を使用する
     m.add_class::<PyRectangle>()?;
-    m.add_function(wrap_pyfunction!(calc_rectangle_area, m)?)?;
+    m.add_function(wrap_pyfunction!(calc_rectangle_area, &m)?)?;
     Ok(())
 }
