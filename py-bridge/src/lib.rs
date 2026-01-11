@@ -12,6 +12,14 @@ pub struct PyRectangle {
     pub height: f64,
 }
 
+#[pymethods]
+impl PyRectangle {
+    #[new]
+    fn new(width: f64, height: f64) -> Self {
+        PyRectangle { width, height }
+    }
+}
+
 #[pyfunction]
 fn calc_rectangle_area(rect: PyRef<PyRectangle>) -> PyResult<f64> {
     let r = Rectangle {
