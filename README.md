@@ -74,11 +74,13 @@ Rust は「唯一の真実（Single Source of Truth）」として扱います�
 
 - Rust コアを PyO3 で Python モジュールとして公開
 - Python からは通常のライブラリとして利用可能
+- 名前変更案: `core-py-bridge`
 
 ### `py-demo/`
 
 - Python から Rust ライブラリを呼び出すデモ
 - 可視化や簡易 UI を想定
+- 名前変更案: `core-py-demo`
 
 ---
 
@@ -89,14 +91,17 @@ Rust は「唯一の真実（Single Source of Truth）」として扱います�
 - Rust の C ABI を公開
 - 入出力は **MessagePack バイナリ**
 - 言語非依存な I/F を提供
+- 名前変更案: `core-ffi-bridge`
 
 ### `dotnet-bridge/`
 
 - C# 側の P/Invoke ラッパー
 - MessagePack のシリアライズ／デシリアライズを担当
 - ネイティブ呼び出しを完全に隠蔽
+- 名前変更案: `core-dotnet-bridge`
 
 ### `dotnet-demo/`
 
 - WPF を用いたデモアプリケーション
 - Rust エンジンの結果を視覚的に確認可能
+- 名前変更案: `core-dotnet-demo`
