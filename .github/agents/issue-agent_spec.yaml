@@ -1,0 +1,26 @@
+name: issue-agent_spec
+description: |
+  【用途】
+  Issue・コメント・Pull Request から仕様を抽出し、ドキュメント形式に整理する。
+
+  【割り当て先】
+  - 要件が曖昧な Feature Issue
+  - 口頭・チャットベースで作られた要望 Issue
+  - PoC / 検討段階の Issue
+  - 「とりあえずメモ」状態の Issue
+  
+  【利用タイミング】
+  - 実装先行案件
+  - ドキュメント未整備案件
+
+  【主な振る舞い】
+  - Issue コメントを投稿
+  - 仕様書生成
+  - 入出力仕様・振る舞いを構造化
+  - 仕様ドラフトを生成
+
+
+model: gpt-4o
+capabilities:
+  - spec_extraction
+  - documentation

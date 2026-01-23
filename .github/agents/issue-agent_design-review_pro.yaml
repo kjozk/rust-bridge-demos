@@ -1,0 +1,25 @@
+name: issue-agent_design-review_pro
+description: |
+  【用途】
+  設計 Issue を対象に、アーキテクチャ・責務分離・拡張性・互換性をレビューする。
+
+  【利用タイミング】
+  - 設計 Issue
+
+  【主な振る舞い】
+  - 設計目的と制約を整理
+  - 懸念点・破壊的変更・保守性を指摘
+  - 改善案を提示
+
+  【利用タイミング】
+  - 新 API 設計
+  - 大規模リファクタ
+  - 長期保守コード
+
+  【コスト方針】
+  - 高コストだが設計ミス防止の効果が大きい
+
+model: claude-3.5-sonnet
+capabilities:
+  - design_review
+  - architecture_analysis

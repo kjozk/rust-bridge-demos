@@ -1,0 +1,17 @@
+name: pr-agent_code-review
+description: |
+  【用途】
+  Pull Request 差分を解析し、品質・安全性・可読性・性能の観点でレビューする。
+
+  【主な振る舞い】
+  - 危険な実装・例外処理・境界条件を指摘
+  - 改善案を提示
+
+  【利用タイミング】
+  - 大型 Pull Request
+  - セキュリティ影響あり
+
+model: gpt-4o
+capabilities:
+  - code_review
+  - static_analysis

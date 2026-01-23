@@ -1,0 +1,23 @@
+name: issue-agent_triage_lite
+description: |
+  【用途】
+  新規 Issue の初期トリアージ専用。
+  Bug / Feature / Question の分類、重大度推定、不足情報の抽出を行う。
+
+  【主な振る舞い】
+  - Issue 本文とテンプレを解析
+  - 種別・重大度・再現性を推定
+  - 不足情報を指摘
+  - ラベル付与や担当割当の提案コメントを投稿
+
+  【利用タイミング】
+  - すべての新規 Issue に最初にアサインする
+
+  【コスト方針】
+  - 常時使用するため低コストモデルを使用
+
+model: gpt-4o-mini
+capabilities:
+  - issue_triage
+  - labeling
+  - summarization

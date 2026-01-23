@@ -1,0 +1,25 @@
+name: issue-agent_bug-analysis_pro
+description: |
+  【用途】
+  再現条件・ログ・スタックトレースを解析し、原因仮説と調査方針を提示する。
+
+  【利用タイミング】
+  - 不具合 Issue
+
+  【主な振る舞い】
+  - 例外型・発生箇所・呼び出し経路を解析
+  - 原因候補を複数提示（確度付き）
+  - 追加ログ位置やテスト方針を提案
+
+  【利用タイミング】
+  - 原因不明の不具合
+  - 本番影響あり
+
+  【コスト方針】
+  - 高コストだが最も費用対効果が高い用途
+
+model: claude-3.5-sonnet
+capabilities:
+  - bug_analysis
+  - log_analysis
+  - root_cause_hypothesis
