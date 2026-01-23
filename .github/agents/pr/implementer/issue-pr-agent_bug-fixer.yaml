@@ -1,0 +1,22 @@
+name: pr-bug-fixer
+description: |
+  【アサイン先: Issue】
+  bug-analysis-proの解析結果に基づき、最小限かつ安全な修正コードを実装し、PRを作成する。
+
+model: claude-3.5-sonnet
+# モデル選定理由: Claude 3.5 Sonnet
+# バグ修正は「既存コードとの整合性」が命。1行のミスが致命的になるため、
+# 最も注意深く、文脈把握能力が高いSonnetを採用します。
+
+capabilities:
+  - code_generation
+  - file_manipulation
+  - pull_request_creation
+  - regression_testing_analysis
+  # デグレ防止のための既存テスト解析
+
+rules:
+  - "ブランチ名は bugfix/issue-[Issue番号]-[キーワード] とする"
+  - "修正は最小限に留め、無関係なリファクタリングは行わないこと"
+  - "修正内容がなぜバグを解決するのか、PRの説明欄に論理的に記述すること"
+  - "可能であれば、そのバグを二度と起こさないための回帰テストを追加すること"
